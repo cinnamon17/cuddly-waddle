@@ -8,22 +8,14 @@ public class BoyOrGirl {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String row = scanner.nextLine();
-		Integer duplicated = 0;
+		StringBuffer str = new StringBuffer();
 		for (int i = 0; i < row.length(); i++) {
-			for (int j = i + 1; j < row.length(); j++) {
-
-				if (row.charAt(i) == row.charAt(j)) {
-					System.out.println(" index i=" + i + " duplicated i: " + row.charAt(i)
-							+ " index j=" + j + " duplicated j: "
-							+ row.charAt(j));
-					duplicated++;
-				}
+			if (str.indexOf(String.valueOf(row.charAt(i))) == -1) {
+				str.append(row.charAt(i));
 			}
-
 		}
 
-		System.out.println(duplicated);
-		if ((row.length() - duplicated) % 2 == 0) {
+		if (str.length() % 2 == 0) {
 
 			System.out.println("CHAT WITH HER!");
 		} else {
