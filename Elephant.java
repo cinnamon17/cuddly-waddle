@@ -4,19 +4,9 @@ public class Elephant {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
-		Integer position = Integer.valueOf(scanner.nextLine());
+		int x = scanner.nextInt();
 
-		if (position % 5 == 0) {
-			System.out.println(position / 5);
-		} else if (position % 4 == 0) {
-			System.out.println(position / 4);
-		} else if (position % 3 == 0) {
-			System.out.println(position / 3);
-		} else if (position % 2 == 0) {
-			System.out.println(position / 2);
-		} else if (position % 1 == 0) {
-			System.out.println(position / 1);
-		}
+		System.out.println((int) Math.ceil((float) x / 5));
 
 		scanner.close();
 	}
