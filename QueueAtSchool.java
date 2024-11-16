@@ -22,20 +22,23 @@ public class QueueAtSchool {
 		}
 
 		char[] chars = sequence.toCharArray();
+		char[] temp = sequence.toCharArray();
 
-		for (int i = 0; i <= times; i++) {
-
+		for (int i = 0; i < times; i++) {
 			for (int j = 0; j < children - 1; j++) {
-
-				if (chars[j] == 'B' && chars[j + 1] == 'G') {
-					chars[j] = 'G';
-					chars[j + 1] = 'B';
-					break;
+				if (chars[j] == 'B' && chars[j + 1] == 'G' && times == 1) {
+					temp[j] = 'G';
+					temp[j + 1] = 'B';
 				}
 
+				if (temp[j] == 'B' && temp[j + 1] == 'G' && times > 1) {
+					chars[j] = 'G';
+					chars[j + 1] = 'B';
+				}
 			}
 		}
 
+		System.out.println(Arrays.toString(temp));
 		System.out.println(Arrays.toString(chars));
 		scanner.close();
 
