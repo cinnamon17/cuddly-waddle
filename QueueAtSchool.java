@@ -20,45 +20,17 @@ public class QueueAtSchool {
 
 		}
 		char[] chars = sequence.toCharArray();
-		char[] sec = sequence.toCharArray();
 
-		if (times == 1) {
-			for (int i = 0; i < times; i++) {
-				for (int j = 0; j < children - 1; j++) {
-					if (chars[j] == 'B' && chars[j + 1] == 'G') {
-						sec[j] = 'G';
-						sec[j + 1] = 'B';
-					}
+		for (int i = 0; i < times; i++) {
+			for (int j = 0; j < children - 1; j++) {
+				if (chars[j] == 'B' && chars[j + 1] == 'G') {
+					chars[j] = 'G';
+					chars[j + 1] = 'B';
+					j++;
 				}
 			}
-			System.out.println(String.valueOf(sec));
-
 		}
-
-		else if (times > 1 && children != 5) {
-			for (int i = 0; i < times; i++) {
-				for (int j = 0; j < children - 1; j++) {
-					if (chars[j] == 'B' && chars[j + 1] == 'G') {
-						chars[j] = 'G';
-						chars[j + 1] = 'B';
-					}
-				}
-			}
-			System.out.println(String.valueOf(chars));
-		}
-
-		else if (times > 1 && children == 5) {
-			for (int i = 0; i < times - 1; i++) {
-				for (int j = 0; j < children - 1; j++) {
-					if (chars[j] == 'B' && chars[j + 1] == 'G') {
-						chars[j] = 'G';
-						chars[j + 1] = 'B';
-					}
-				}
-			}
-			System.out.println(String.valueOf(chars));
-		}
-
+		System.out.println(String.valueOf(chars));
 		scanner.close();
 
 	}
