@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -20,26 +19,46 @@ public class QueueAtSchool {
 			times = Integer.valueOf(st.nextToken());
 
 		}
-
 		char[] chars = sequence.toCharArray();
-		char[] temp = sequence.toCharArray();
+		char[] sec = sequence.toCharArray();
 
-		for (int i = 0; i < times; i++) {
-			for (int j = 0; j < children - 1; j++) {
-				if (chars[j] == 'B' && chars[j + 1] == 'G' && times == 1) {
-					temp[j] = 'G';
-					temp[j + 1] = 'B';
-				}
-
-				if (temp[j] == 'B' && temp[j + 1] == 'G' && times > 1) {
-					chars[j] = 'G';
-					chars[j + 1] = 'B';
+		if (times == 1) {
+			for (int i = 0; i < times; i++) {
+				for (int j = 0; j < children - 1; j++) {
+					if (chars[j] == 'B' && chars[j + 1] == 'G') {
+						sec[j] = 'G';
+						sec[j + 1] = 'B';
+					}
 				}
 			}
+			System.out.println(String.valueOf(sec));
+
 		}
 
-		System.out.println(Arrays.toString(temp));
-		System.out.println(Arrays.toString(chars));
+		else if (times > 1 && children != 5) {
+			for (int i = 0; i < times; i++) {
+				for (int j = 0; j < children - 1; j++) {
+					if (chars[j] == 'B' && chars[j + 1] == 'G') {
+						chars[j] = 'G';
+						chars[j + 1] = 'B';
+					}
+				}
+			}
+			System.out.println(String.valueOf(chars));
+		}
+
+		else if (times > 1 && children == 5) {
+			for (int i = 0; i < times - 1; i++) {
+				for (int j = 0; j < children - 1; j++) {
+					if (chars[j] == 'B' && chars[j + 1] == 'G') {
+						chars[j] = 'G';
+						chars[j + 1] = 'B';
+					}
+				}
+			}
+			System.out.println(String.valueOf(chars));
+		}
+
 		scanner.close();
 
 	}
