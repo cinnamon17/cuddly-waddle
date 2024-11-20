@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -17,7 +16,6 @@ public class Presents {
 			permutation[i] = scanner.nextInt() - 1; // Adjust for 0-based indexing
 		}
 
-		System.out.println(Arrays.toString(permutation));
 		for (int i = 0; i < n; i++) {
 			inversePermutation[permutation[i]] = i + 1; // Adjust for 1-based indexing in output
 		}
