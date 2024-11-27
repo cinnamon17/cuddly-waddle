@@ -1,7 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /**
  * InterceptedInputs
@@ -10,28 +8,35 @@ public class InterceptedInputs {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		Integer testCases = Integer.valueOf(scanner.nextLine());
-		Map<Integer, Integer> numbers = new HashMap<>();
+
+		int testCases = Integer.parseInt(scanner.nextLine());
+
 		for (int i = 0; i < testCases; i++) {
-			Integer inputs = Integer.valueOf(scanner.nextLine());
-			StringTokenizer st = new StringTokenizer(scanner.nextLine());
+			int k = Integer.parseInt(scanner.nextLine());
+			String[] numbers = scanner.nextLine().split(" ");
 
-			for (int j = 0; j < inputs; j++) {
-				numbers.put(j, Integer.valueOf(st.nextToken()));
+			int[] freq = new int[k + 1];
+			for (String numStr : numbers) {
+				int num = Integer.parseInt(numStr);
+				freq[num]++;
 			}
-			for (int j = 0; j < inputs; j++) {
-				Integer n = numbers.get(j);
-				Integer m = numbers.get((inputs - 2) / n);
 
-				if (n * m == inputs - 2) {
-					System.out.println(n + " " + m);
+			System.out.println(Arrays.toString(freq));
+			int a = -1, b = -1;
+			for (int j = 1; j <= k; j++) {
+				if (j * j == k - 2 && freq[j] > 1) {
+					a = b = j;
+					break;
+				} else if ((k - 2) % j == 0 && freq[j] > 0 && freq[(k - 2) / j] > 0) {
+					a = j;
+					b = (k - 2) / j;
 					break;
 				}
 			}
+
+			System.out.println(a + " " + b);
 		}
 
 		scanner.close();
-
 	}
-
 }
