@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -15,7 +14,6 @@ public class Twice {
 			Integer length = Integer.valueOf(scanner.nextLine());
 			int counter = 0;
 			int[] freq = new int[length + 1];
-			int[] values = new int[length + 1];
 			String row = scanner.nextLine();
 			StringTokenizer st = new StringTokenizer(row);
 
@@ -24,19 +22,14 @@ public class Twice {
 				if (st.hasMoreTokens()) {
 					Integer n = Integer.valueOf(st.nextToken());
 					freq[n]++;
-					values[n] = n;
 				}
-
 			}
-
-			System.out.println(Arrays.toString(freq));
-			System.out.println(Arrays.toString(values));
 			for (int j = 0; j < freq.length; j++) {
 
-				if (freq[j] % 2 == 0 && freq[j] > 2) {
-					counter = freq[j] / 2;
+				if (freq[j] % 2 == 0 && freq[j] > 1) {
+					counter += freq[j] / 2;
 				} else {
-					counter++;
+					counter += (freq[j] - 1) / 2;
 				}
 			}
 			System.out.println(counter);
