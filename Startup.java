@@ -20,7 +20,7 @@ public class Startup {
 			if (st.hasMoreTokens()) {
 				Integer shelves = Integer.valueOf(st.nextToken());
 				Integer bottles = Integer.valueOf(st.nextToken());
-				Integer[] prices = new Integer[bottles];
+				int[] prices = new int[bottles];
 
 				if (shelves >= bottles) {
 					for (int j = 0; j < bottles; j++) {
@@ -32,7 +32,6 @@ public class Startup {
 							earnings += price;
 						}
 					}
-
 				} else {
 					for (int j = 0; j < bottles; j++) {
 						String innerRow = scanner.nextLine();
@@ -41,14 +40,14 @@ public class Startup {
 						if (stInner.hasMoreTokens()) {
 							Integer brand = Integer.valueOf(stInner.nextToken());
 							Integer price = Integer.valueOf(stInner.nextToken());
-							prices[j] = price;
+							prices[brand - 1] += price;
 						}
 					}
 					Arrays.sort(prices);
+					System.out.println(Arrays.toString(prices));
 
-					for (int j = 0; j < shelves; j++) {
-						earnings += prices[j + prices.length - 1];
-						// System.out.println(prices[j + prices.length - 1]);
+					for (int j = 0; j < Math.min(shelves, bottles); j++) {
+						earnings += prices[(prices.length - 1) - j];
 					}
 				}
 				System.out.println(earnings);
