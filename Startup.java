@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -20,39 +21,26 @@ public class Startup {
 			if (st.hasMoreTokens()) {
 				Integer shelves = Integer.valueOf(st.nextToken());
 				Integer bottles = Integer.valueOf(st.nextToken());
-				int[] prices = new int[bottles];
+				Integer[] prices = new Integer[bottles];
+				Arrays.fill(prices, 0);
 
-				if (shelves >= bottles) {
-					for (int j = 0; j < bottles; j++) {
-						String innerRow = scanner.nextLine();
-						StringTokenizer stInner = new StringTokenizer(innerRow);
-						if (stInner.hasMoreTokens()) {
-							Integer brand = Integer.valueOf(stInner.nextToken());
-							Integer price = Integer.valueOf(stInner.nextToken());
-							earnings += price;
-						}
-					}
-				} else {
-					for (int j = 0; j < bottles; j++) {
-						String innerRow = scanner.nextLine();
-						StringTokenizer stInner = new StringTokenizer(innerRow);
+				for (int j = 0; j < bottles; j++) {
+					String innerRow = scanner.nextLine();
+					StringTokenizer stInner = new StringTokenizer(innerRow);
 
-						if (stInner.hasMoreTokens()) {
-							Integer brand = Integer.valueOf(stInner.nextToken());
-							Integer price = Integer.valueOf(stInner.nextToken());
-							prices[brand - 1] += price;
-						}
-					}
-					Arrays.sort(prices);
-					System.out.println(Arrays.toString(prices));
-
-					for (int j = 0; j < Math.min(shelves, bottles); j++) {
-						earnings += prices[(prices.length - 1) - j];
+					if (stInner.hasMoreTokens()) {
+						Integer brand = Integer.valueOf(stInner.nextToken());
+						Integer price = Integer.valueOf(stInner.nextToken());
+						prices[brand - 1] += price;
 					}
 				}
-				System.out.println(earnings);
-			}
+				Arrays.sort(prices, Collections.reverseOrder());
 
+				for (int j = 0; j < Math.min(shelves, bottles); j++) {
+					earnings += prices[j];
+				}
+			}
+			System.out.println(earnings);
 		}
 
 		scanner.close();
