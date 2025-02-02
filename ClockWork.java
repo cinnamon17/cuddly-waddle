@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,19 +11,22 @@ public class ClockWork {
 		int testCases = scanner.nextInt();
 
 		while (testCases-- > 0) {
-			int clocks = scanner.nextInt();
-			boolean isInfinite = false;
+			int numClocks = scanner.nextInt();
+			scanner.nextLine();
+			String[] clocks = scanner.nextLine().split(" ");
+			boolean isInfinite = true;
 
-			for (int i = 0; i < clocks; i++) {
-				int clock = scanner.nextInt();
-
-				if (clock <= Math.max(2 * (clocks - 1 - i), 2 * i)) {
-					System.out.println("NO");
+			for (int i = 0; i < numClocks; i++) {
+				if (Integer.parseInt(clocks[i]) <= Math.max(2 * (numClocks - 1 - i), 2 * i)) {
+					isInfinite = false;
 					break;
-				} else {
-					isInfinite = true;
-					System.out.println("YES");
 				}
+			}
+
+			if (isInfinite) {
+				System.out.println("YES");
+			} else {
+				System.out.println("NO");
 			}
 
 		}
